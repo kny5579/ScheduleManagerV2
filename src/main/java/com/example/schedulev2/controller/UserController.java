@@ -1,11 +1,8 @@
 package com.example.schedulev2.controller;
 
-import com.example.exception.BusinessException;
-import com.example.schedulev2.dto.schedule.ScheduleRequestDto;
-import com.example.schedulev2.dto.schedule.ScheduleResponseDto;
 import com.example.schedulev2.dto.user.UserRequestDto;
 import com.example.schedulev2.dto.user.UserResponseDto;
-import com.example.schedulev2.repository.UserRepository;
+import com.example.schedulev2.dto.user.UserSaveRequestDto;
 import com.example.schedulev2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,8 +19,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userRequestDto) {
-        return new ResponseEntity<>(userService.saveUser(userRequestDto), HttpStatus.CREATED);
+    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserSaveRequestDto userSaveRequestDto) {
+        return new ResponseEntity<>(userService.saveUser(userSaveRequestDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/find")

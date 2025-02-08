@@ -1,10 +1,13 @@
 package com.example.schedulev2.service;
 
 import com.example.exception.BusinessException;
-import com.example.schedulev2.dto.schedule.ScheduleRequestDto;
+import com.example.schedulev2.dto.schedule.ScheduleUpdateRequestDto;
 import com.example.schedulev2.dto.schedule.ScheduleResponseDto;
+import com.example.schedulev2.dto.schedule.ScheduleSaveRequestDto;
 import com.example.schedulev2.entity.Schedule;
+import com.example.schedulev2.entity.User;
 import com.example.schedulev2.repository.ScheduleRepository;
+import com.example.schedulev2.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,10 +20,13 @@ import java.util.List;
 public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;
 
     @Transactional
-    public ScheduleResponseDto saveSchedule(ScheduleRequestDto scheduleRequestDto) {
-        Schedule schedule = new Schedule(scheduleRequestDto.getTitle(), scheduleRequestDto.getContents());
+    public ScheduleResponseDto saveSchedule(ScheduleSaveRequestDto scheduleSaveRequestDto) {
+        User user = userRepository.findById(scheduleSaveRequestDto.getUserId())
+                .orElseThrow(() -> new BusinessException("해당 회원이 존재하지 않습니다.", HttpStatus.NOT_FOUND));
+        Schedule schedule = new Schedule(scheduleSaveRequestDto.getTitle(), scheduleSaveRequestDto.getContents(),user);
         Schedule saveSchedule = scheduleRepository.save(schedule);
         return new ScheduleResponseDto(
                 saveSchedule.getTitle(),
@@ -44,10 +50,10 @@ public class ScheduleService {
     }
 
     @Transactional
-    public ScheduleResponseDto updateSchedule(Long id, ScheduleRequestDto scheduleRequestDto) {
+    public ScheduleResponseDto updateSchedule(Long id, ScheduleUpdateRequestDto scheduleUpdateRequestDto) {
         Schedule schedule = scheduleRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("id가 존재하지 않습니다.: " + id, HttpStatus.NOT_FOUND));
-        schedule.updateSchedule(scheduleRequestDto.getTitle(), scheduleRequestDto.getContents());
+        schedule.updateSchedule(scheduleUpdateRequestDto.getTitle(), scheduleUpdateRequestDto.getContents());
         scheduleRepository.saveAndFlush(schedule);
         return new ScheduleResponseDto(schedule);
     }

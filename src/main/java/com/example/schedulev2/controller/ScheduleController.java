@@ -1,10 +1,9 @@
 package com.example.schedulev2.controller;
 
-import com.example.schedulev2.dto.schedule.ScheduleRequestDto;
+import com.example.schedulev2.dto.schedule.ScheduleUpdateRequestDto;
 import com.example.schedulev2.dto.schedule.ScheduleResponseDto;
+import com.example.schedulev2.dto.schedule.ScheduleSaveRequestDto;
 import com.example.schedulev2.service.ScheduleService;
-import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +19,8 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @PostMapping
-    public ResponseEntity<ScheduleResponseDto> createSchedule(@RequestBody ScheduleRequestDto scheduleRequestDto) {
-        return new ResponseEntity<>(scheduleService.saveSchedule(scheduleRequestDto), HttpStatus.CREATED);
+    public ResponseEntity<ScheduleResponseDto> createSchedule(@RequestBody ScheduleSaveRequestDto scheduleSaveRequestDto) {
+        return new ResponseEntity<>(scheduleService.saveSchedule(scheduleSaveRequestDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/find")
@@ -35,8 +34,8 @@ public class ScheduleController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long id, @RequestBody ScheduleRequestDto scheduleRequestDto) {
-        return new ResponseEntity<>(scheduleService.updateSchedule(id, scheduleRequestDto), HttpStatus.OK);
+    public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long id, @RequestBody ScheduleUpdateRequestDto scheduleUpdateRequestDto) {
+        return new ResponseEntity<>(scheduleService.updateSchedule(id, scheduleUpdateRequestDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
