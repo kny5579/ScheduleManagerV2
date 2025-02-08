@@ -36,5 +36,15 @@ public class UserController {
         return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserResponseDto> updateSchedule(@PathVariable Long id, @RequestBody UserRequestDto userRequestDto) {
+        return new ResponseEntity<>(userService.updateUser(id, userRequestDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return new ResponseEntity<>("삭제되었습니다.", HttpStatus.OK);
+    }
 
 }
