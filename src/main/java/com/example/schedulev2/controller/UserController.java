@@ -18,10 +18,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
-    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserSaveRequestDto userSaveRequestDto) {
-        return new ResponseEntity<>(userService.saveUser(userSaveRequestDto), HttpStatus.CREATED);
-    }
+
 
     @GetMapping("/find")
     public ResponseEntity<List<UserResponseDto>> findAllUsers() {

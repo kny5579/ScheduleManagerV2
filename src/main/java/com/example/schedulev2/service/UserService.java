@@ -6,6 +6,8 @@ import com.example.schedulev2.dto.user.UserResponseDto;
 import com.example.schedulev2.dto.user.UserSaveRequestDto;
 import com.example.schedulev2.entity.User;
 import com.example.schedulev2.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,18 +20,6 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-
-    @Transactional
-    public UserResponseDto saveUser(UserSaveRequestDto userSaveRequestDto) {
-        User user = new User(userSaveRequestDto.getUsername(),userSaveRequestDto.getEmail(),userSaveRequestDto.getPassword());
-        User savedUser = userRepository.save(user);
-        return new UserResponseDto(
-                savedUser.getUsername(),
-                savedUser.getEmail(),
-                savedUser.getCreatedDate(),
-                savedUser.getUpdatedDate()
-        );
-    }
 
     public List<UserResponseDto> findAllUsers() {
         return userRepository.findAll()
