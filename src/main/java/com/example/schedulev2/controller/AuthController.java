@@ -6,12 +6,15 @@ import com.example.schedulev2.service.AuthService;
 import com.example.schedulev2.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -22,13 +25,13 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public ResponseEntity<UserResponseDto> signUp(@RequestBody UserSaveRequestDto userSaveRequestDto) {
+    public ResponseEntity<UserResponseDto> signUp(@Valid @RequestBody UserSaveRequestDto userSaveRequestDto) {
         return new ResponseEntity<>(authService.saveUser(userSaveRequestDto), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(
-            @RequestBody UserSaveRequestDto userSaveRequestDto,
+            @Valid @RequestBody UserSaveRequestDto userSaveRequestDto,
             HttpServletRequest request
     ) {
         boolean loginService = authService.login(userSaveRequestDto.getEmail(), userSaveRequestDto.getPassword(), request);

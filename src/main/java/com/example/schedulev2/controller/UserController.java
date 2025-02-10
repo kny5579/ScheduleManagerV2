@@ -1,24 +1,24 @@
 package com.example.schedulev2.controller;
 
-import com.example.schedulev2.dto.user.UserRequestDto;
+import com.example.schedulev2.dto.user.UserUpdateRequestDto;
 import com.example.schedulev2.dto.user.UserResponseDto;
-import com.example.schedulev2.dto.user.UserSaveRequestDto;
 import com.example.schedulev2.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-
-
 
     @GetMapping("/find")
     public ResponseEntity<List<UserResponseDto>> findAllUsers() {
@@ -31,8 +31,8 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<UserResponseDto> updateSchedule(@PathVariable Long id, @RequestBody UserRequestDto userRequestDto) {
-        return new ResponseEntity<>(userService.updateUser(id, userRequestDto), HttpStatus.OK);
+    public ResponseEntity<UserResponseDto> updateSchedule(@PathVariable Long id, @Valid @RequestBody UserUpdateRequestDto userUpdateRequestDto) {
+        return new ResponseEntity<>(userService.updateUser(id, userUpdateRequestDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
