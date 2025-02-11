@@ -1,5 +1,6 @@
 package com.example.schedulev2.controller;
 
+import com.example.schedulev2.config.PasswordEncoder;
 import com.example.schedulev2.dto.user.UserResponseDto;
 import com.example.schedulev2.dto.user.UserSaveRequestDto;
 import com.example.schedulev2.service.AuthService;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class AuthController {
 
-    private final UserService userService;
     private final AuthService authService;
 
     @PostMapping("/signup")
@@ -34,7 +34,7 @@ public class AuthController {
             @Valid @RequestBody UserSaveRequestDto userSaveRequestDto,
             HttpServletRequest request
     ) {
-        boolean loginService = authService.login(userSaveRequestDto.getEmail(), userSaveRequestDto.getPassword(), request);
+        authService.login(userSaveRequestDto, request);
         return ResponseEntity.ok("로그인 성공");
     }
 
