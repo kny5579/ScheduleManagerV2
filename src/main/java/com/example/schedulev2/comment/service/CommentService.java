@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CommentService {
@@ -33,6 +35,19 @@ public class CommentService {
                 savedComment.getCreatedDate(),
                 savedComment.getUpdatedDate()
         );
+    }
+
+    public List<CommentResponseDto> findCommentByScheduleId(Long scheduleId) {
+        return commentRepository.findByScheduleId(scheduleId)
+                .stream()
+                .map(CommentResponseDto::new)
+                .toList();
+    }
+
+    public CommentResponseDto findCommentById(Long id) {
+        return commentRepository.findById(id)
+                .map(CommentResponseDto::new)
+                .orElseThrow(()-> new BusinessException("id가 존재하지 않습니다.: "+id,HttpStatus.NOT_FOUND));
     }
 
 
