@@ -25,7 +25,7 @@ public class AuthService {
     public UserResponseDto saveUser(UserSaveRequestDto userSaveRequestDto) {
         String password = passwordEncoder.encode(userSaveRequestDto.getPassword());
         if (userRepository.findByEmail(userSaveRequestDto.getEmail()).isPresent()) {
-            throw new BusinessException("동일한 이메일이 이미 존재합니다.", HttpStatus.UNAUTHORIZED);
+            throw new BusinessException("동일한 이메일이 이미 존재합니다.", HttpStatus.CONFLICT);
         }
         User user = new User(userSaveRequestDto.getUsername(), userSaveRequestDto.getEmail(), password);
         User savedUser = userRepository.save(user);
