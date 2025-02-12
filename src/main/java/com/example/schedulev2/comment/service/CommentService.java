@@ -30,7 +30,7 @@ public class CommentService {
                 .orElseThrow(() -> new BusinessException("해당 일정이 존재하지 않습니다.", HttpStatus.NOT_FOUND));
         User user = userRepository.findById(commentRequestDto.getUserId())
                 .orElseThrow(() -> new BusinessException("해당 유저가 존재하지 않습니다.", HttpStatus.NOT_FOUND));
-        Comment comment = new Comment(commentRequestDto.getContents(),user,schedule);
+        Comment comment = new Comment(commentRequestDto.getContents(), user, schedule);
         Comment savedComment = commentRepository.save(comment);
         return new CommentResponseDto(
                 savedComment.getContents(),
@@ -49,11 +49,11 @@ public class CommentService {
     public CommentResponseDto findCommentById(Long id) {
         return commentRepository.findById(id)
                 .map(CommentResponseDto::new)
-                .orElseThrow(()-> new BusinessException("id가 존재하지 않습니다.: "+id,HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new BusinessException("id가 존재하지 않습니다.: " + id, HttpStatus.NOT_FOUND));
     }
 
     @Transactional
-    public CommentResponseDto updateComment(Long id,CommentRequestDto commentRequestDto) {
+    public CommentResponseDto updateComment(Long id, CommentRequestDto commentRequestDto) {
         Comment comment = commentRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("id가 존재하지 않습니다.: " + id, HttpStatus.NOT_FOUND));
         comment.updateComment(commentRequestDto.getContents());

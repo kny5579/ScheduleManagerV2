@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping("/find")
     public ResponseEntity<List<UserResponseDto>> findAllUsers() {
-        return new ResponseEntity<>(userService.findAllUsers(),HttpStatus.OK);
+        return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")

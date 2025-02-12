@@ -3,9 +3,6 @@ package com.example.schedulev2.comment.controller;
 import com.example.schedulev2.comment.dto.requestDto.CommentRequestDto;
 import com.example.schedulev2.comment.dto.responseDto.CommentResponseDto;
 import com.example.schedulev2.comment.service.CommentService;
-import com.example.schedulev2.schedule.dto.requestDto.ScheduleSaveRequestDto;
-import com.example.schedulev2.schedule.dto.requestDto.ScheduleUpdateRequestDto;
-import com.example.schedulev2.schedule.dto.responseDto.ScheduleResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -51,7 +48,6 @@ public class CommentController {
         commentService.deleteComment(id);
         return new ResponseEntity<>("삭제되었습니다.", HttpStatus.OK);
     }
-
 
 
 }

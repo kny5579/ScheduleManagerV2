@@ -2,22 +2,19 @@ package com.example.schedulev2.schedule.service;
 
 import com.example.schedulev2.common.exception.BusinessException;
 import com.example.schedulev2.schedule.dto.pagingDto.SchedulePagingDto;
+import com.example.schedulev2.schedule.dto.requestDto.ScheduleSaveRequestDto;
 import com.example.schedulev2.schedule.dto.requestDto.ScheduleUpdateRequestDto;
 import com.example.schedulev2.schedule.dto.responseDto.ScheduleResponseDto;
-import com.example.schedulev2.schedule.dto.requestDto.ScheduleSaveRequestDto;
 import com.example.schedulev2.schedule.entity.Schedule;
-import com.example.schedulev2.user.entity.User;
 import com.example.schedulev2.schedule.repository.ScheduleRepository;
+import com.example.schedulev2.user.entity.User;
 import com.example.schedulev2.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +30,7 @@ public class ScheduleService {
     public ScheduleResponseDto saveSchedule(ScheduleSaveRequestDto scheduleSaveRequestDto) {
         User user = userRepository.findById(scheduleSaveRequestDto.getUserId())
                 .orElseThrow(() -> new BusinessException("해당 회원이 존재하지 않습니다.", HttpStatus.NOT_FOUND));
-        Schedule schedule = new Schedule(scheduleSaveRequestDto.getTitle(), scheduleSaveRequestDto.getContents(),user);
+        Schedule schedule = new Schedule(scheduleSaveRequestDto.getTitle(), scheduleSaveRequestDto.getContents(), user);
         Schedule saveSchedule = scheduleRepository.save(schedule);
         return new ScheduleResponseDto(
                 saveSchedule.getTitle(),

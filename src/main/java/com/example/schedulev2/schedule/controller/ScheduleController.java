@@ -1,9 +1,9 @@
 package com.example.schedulev2.schedule.controller;
 
 import com.example.schedulev2.schedule.dto.pagingDto.SchedulePagingDto;
+import com.example.schedulev2.schedule.dto.requestDto.ScheduleSaveRequestDto;
 import com.example.schedulev2.schedule.dto.requestDto.ScheduleUpdateRequestDto;
 import com.example.schedulev2.schedule.dto.responseDto.ScheduleResponseDto;
-import com.example.schedulev2.schedule.dto.requestDto.ScheduleSaveRequestDto;
 import com.example.schedulev2.schedule.service.ScheduleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class ScheduleController {
 
     @GetMapping("/find")
     public ResponseEntity<List<ScheduleResponseDto>> findAllSchedules() {
-        return new ResponseEntity<>(scheduleService.findAllSchedules(),HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.findAllSchedules(), HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
