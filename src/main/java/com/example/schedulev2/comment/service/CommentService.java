@@ -9,6 +9,7 @@ import com.example.schedulev2.schedule.entity.Schedule;
 import com.example.schedulev2.schedule.repository.ScheduleRepository;
 import com.example.schedulev2.user.entity.User;
 import com.example.schedulev2.user.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ public class CommentService {
     private final ScheduleRepository scheduleRepository;
     private final UserRepository userRepository;
 
+    @Transactional
     public CommentResponseDto saveComment(Long scheduleId, CommentRequestDto commentRequestDto) {
         Schedule schedule = scheduleRepository.findById(scheduleId)
                 .orElseThrow(() -> new BusinessException("해당 일정이 존재하지 않습니다.", HttpStatus.NOT_FOUND));
@@ -50,6 +52,20 @@ public class CommentService {
                 .orElseThrow(()-> new BusinessException("id가 존재하지 않습니다.: "+id,HttpStatus.NOT_FOUND));
     }
 
+    @Transactional
+    public CommentResponseDto updateComment(Long id,CommentRequestDto commentRequestDto) {
+        Comment comment = commentRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("id가 존재하지 않습니다.: " + id, HttpStatus.NOT_FOUND));
+        comment.updateComment(commentRequestDto.getContents());
+        commentRepository.saveAndFlush(comment);
+        return new CommentResponseDto(comment);
+    }
 
+    @Transactional
+    public void deleteComment(Long id) {
+        Comment comment = commentRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("id가 존재하지 않습니다.: " + id, HttpStatus.NOT_FOUND));
+        commentRepository.delete(comment);
+    }
 
 }

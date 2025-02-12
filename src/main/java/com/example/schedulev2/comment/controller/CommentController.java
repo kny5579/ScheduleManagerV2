@@ -4,6 +4,7 @@ import com.example.schedulev2.comment.dto.requestDto.CommentRequestDto;
 import com.example.schedulev2.comment.dto.responseDto.CommentResponseDto;
 import com.example.schedulev2.comment.service.CommentService;
 import com.example.schedulev2.schedule.dto.requestDto.ScheduleSaveRequestDto;
+import com.example.schedulev2.schedule.dto.requestDto.ScheduleUpdateRequestDto;
 import com.example.schedulev2.schedule.dto.responseDto.ScheduleResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,17 @@ public class CommentController {
     @GetMapping("/{id}")
     public ResponseEntity<CommentResponseDto> findCommentById(@PathVariable Long id) {
         return new ResponseEntity<>(commentService.findCommentById(id), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<CommentResponseDto> updateComment(@PathVariable Long id, @Valid @RequestBody CommentRequestDto commentRequestDto) {
+        return new ResponseEntity<>(commentService.updateComment(id, commentRequestDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteComment(@PathVariable Long id) {
+        commentService.deleteComment(id);
+        return new ResponseEntity<>("삭제되었습니다.", HttpStatus.OK);
     }
 
 
