@@ -1,11 +1,13 @@
 package com.example.schedulev2.schedule.controller;
 
+import com.example.schedulev2.schedule.dto.pagingDto.SchedulePagingDto;
 import com.example.schedulev2.schedule.dto.requestDto.ScheduleUpdateRequestDto;
 import com.example.schedulev2.schedule.dto.responseDto.ScheduleResponseDto;
 import com.example.schedulev2.schedule.dto.requestDto.ScheduleSaveRequestDto;
 import com.example.schedulev2.schedule.service.ScheduleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -34,6 +36,14 @@ public class ScheduleController {
     @GetMapping("/find/{id}")
     public ResponseEntity<ScheduleResponseDto> findScheduleById(@PathVariable Long id) {
         return new ResponseEntity<>(scheduleService.findScheduleById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/find/paging")
+    public ResponseEntity<PagedModel<SchedulePagingDto>> findScheduleByPage(
+            @RequestParam(value = "pageNum") int pageNum,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize
+    ) {
+        return ResponseEntity.ok(new PagedModel<>(scheduleService.findScheduleByPage(pageNum, pageSize)));
     }
 
     @PatchMapping("/{id}")

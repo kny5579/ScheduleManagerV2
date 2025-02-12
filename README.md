@@ -32,3 +32,16 @@ CREATE TABLE schedule
 
 ### API 명세서
 ![img_1.png](img_1.png)
+
+
+- signup
+![img_2.png](img_2.png)
+
+- login
+![img_3.png](img_3.png)
+
+- schedule create
+![img_4.png](img_4.png)
+
+- paging
+![img_5.png](img_5.png)
