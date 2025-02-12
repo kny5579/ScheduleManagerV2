@@ -113,17 +113,15 @@ CREATE TABLE comment
 <br>
 
 ## 👉🏻 구현 사항
-✅ 일정 생성  
-✅ 일정 조회(전체 일정, 수정일, 작성자명, ID 기준)  
-✅ 선택 일정 삭제  
-✅ 선택 일정 수정  
-✅ 작성자 테이블 설계 및 일정 테이블에 외래키 설정  
+✅ 일정 엔티티 crud 
+✅ 유저 엔티티 crud
+✅ 댓글 엔티티 crud
+✅ 테이블 연관관계 매핑 및 외래키 설정
 ✅ Page 객체를 활용한 페이지별 일정 목록 조회(페이지 번호, 페이지 크기 기준)  
 ✅ @ExceptionHandler를 활용한 Custom Exception 생성 및 예외 처리  
 ✅ @Valid, @Pattern을 활용한 유효성 검증  
 ✅ Cookie/Session을 활용한 로그인 기능 구현 (Spring Security 미사용)  
-✅ BCrypt를 활용한 비밀번호 암호화 적용  
-✅ 일정과 연관된 댓글 CRUD 기능 구현  
+✅ BCrypt를 활용한 비밀번호 암호화 적용
 ✅ JPA Auditing을 활용한 생성일/수정일 자동 처리
 
 <br>
