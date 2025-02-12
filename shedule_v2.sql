@@ -18,3 +18,15 @@ CREATE TABLE schedule
     user_id BIGINT,
     foreign key (user_id) references user(id)
 );
+
+CREATE TABLE comment
+(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    contents VARCHAR(200) NOT NULL,
+    created_date DATETIME,
+    updated_date DATETIME,
+    user_id BIGINT,
+    schedule_id BIGINT,
+    foreign key (user_id) references comment(id),
+    foreign key (schedule_id) references comment(id)
+)
