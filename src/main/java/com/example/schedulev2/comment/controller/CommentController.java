@@ -27,7 +27,7 @@ public class CommentController {
     }
 
     //schedule의 comment read
-    @GetMapping("/{scheduleId}")
+    @GetMapping("/schedule/{scheduleId}")
     public ResponseEntity<List<CommentResponseDto>> findCommentByScheduleId(@PathVariable Long scheduleId) {
         return new ResponseEntity<>(commentService.findCommentByScheduleId(scheduleId), HttpStatus.OK);
     }
