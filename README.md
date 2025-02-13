@@ -113,16 +113,16 @@ CREATE TABLE comment
 <br>
 
 ## 👉🏻 구현 사항
-✅ 일정 엔티티 crud 
-✅ 유저 엔티티 crud
-✅ 댓글 엔티티 crud
-✅ 테이블 연관관계 매핑 및 외래키 설정
-✅ Page 객체를 활용한 페이지별 일정 목록 조회(페이지 번호, 페이지 크기 기준)  
-✅ @ExceptionHandler를 활용한 Custom Exception 생성 및 예외 처리  
-✅ @Valid, @Pattern을 활용한 유효성 검증  
-✅ Cookie/Session을 활용한 로그인 기능 구현 (Spring Security 미사용)  
-✅ BCrypt를 활용한 비밀번호 암호화 적용
-✅ JPA Auditing을 활용한 생성일/수정일 자동 처리
+✅ 일정 엔티티 crud <br>
+✅ 유저 엔티티 crud <br>
+✅ 댓글 엔티티 crud <br>
+✅ 테이블 연관관계 매핑 및 외래키 설정 <br>
+✅ Page 객체를 활용한 페이지별 일정 목록 조회(페이지 번호, 페이지 크기 기준)   <br>
+✅ @ExceptionHandler를 활용한 Custom Exception 생성 및 예외 처리   <br>
+✅ @Valid, @Pattern을 활용한 유효성 검증   <br>
+✅ Cookie/Session을 활용한 로그인 기능 구현 (Spring Security 미사용)   <br>
+✅ BCrypt를 활용한 비밀번호 암호화 적용 <br>
+✅ JPA Auditing을 활용한 생성일/수정일 자동 처리 <br>
 
 <br>
 
@@ -132,20 +132,20 @@ CREATE TABLE comment
 
 <summary><b>schedule</b></summary>
 
-- schedule create
+- schedule create <br>
 ![img_4.png](readmeImg/img_4.png)
 
-- schedule read
+- schedule read <br>
 ![img_1.png](readmeImg/img_1.png)
 ![img_2.png](readmeImg/img_2.png)
 
-- paging
+- paging <br>
 ![img_5.png](readmeImg/img_5.png)
 
-- schedule update
+- schedule update <br>
 ![img_3.png](readmeImg/updateSchedule.png)
 
-- schedule delete
+- schedule delete <br>
 ![img_4.png](readmeImg/deleteSchedule.png)
 
 </details>
@@ -154,13 +154,13 @@ CREATE TABLE comment
 
 <summary><b>auth</b></summary>
 
-- signup(user create)
+- signup(user create) <br>
   ![img.png](readmeImg/signup.png)
 
-- login
+- login <br>
   ![img_3.png](readmeImg/img_3.png)
 
-- logout
+- logout <br>
  ![img.png](readmeImg/img.png)
 
 </details>
@@ -169,14 +169,14 @@ CREATE TABLE comment
 
 <summary><b>user</b></summary>
 
-- user read
+- user read <br>
 ![img_5.png](readmeImg/userRead.png)
 ![img_6.png](readmeImg/img_6.png)
 
-- user update
+- user update <br>
 ![img_9.png](readmeImg/img_9.png)
 
-- user delete
+- user delete <br>
 ![img_10.png](readmeImg/img_10.png)
 
 </details>
@@ -186,17 +186,17 @@ CREATE TABLE comment
 <summary><b>comment</b></summary>
 
 
-- comment create
+- comment create <br>
 ![img_11.png](readmeImg/img_11.png)
 
-- comment read
+- comment read <br>
 ![img_12.png](readmeImg/img_12.png)
 ![img_13.png](readmeImg/img_13.png)
 
-- comment update
+- comment update <br>
 ![img_14.png](readmeImg/img_14.png)
 
-- comment delete
+- comment delete <br>
 ![img_15.png](readmeImg/img_15.png)
 
 </details>
@@ -205,18 +205,18 @@ CREATE TABLE comment
 
 <summary><b>exception</b></summary>
 
-- 이미 존재하는 계정(회원가입)
+- 이미 존재하는 계정(회원가입) <br>
 ![img_16.png](readmeImg/img_16.png)
 
-- 유효성 검사 실패
+- 유효성 검사 실패 <br>
 ![img_17.png](readmeImg/img_17.png)
 ![img_18.png](readmeImg/img_18.png)
 ![img_8.png](readmeImg/img_8.png)
 
-- id 불일치
+- id 불일치 <br>
 ![img_7.png](readmeImg/img_7.png)
 
-- 로그인 실패
+- 로그인 실패 <br>
 ![img_19.png](readmeImg/img_19.png)
 
 </details>
