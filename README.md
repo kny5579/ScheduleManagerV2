@@ -70,12 +70,12 @@ CREATE TABLE comment
 
 | 기능              | 메서드  | 엔드포인트                 | 요청 데이터      | 요청 예시                                      | 응답 데이터   | 상태 코드 및 설명                             |
 |-----------------|--------|--------------------------|--------------|------------------------------------------|-----------|----------------------------------------|
-| 일정 생성       | POST   | /schedules              | Body         | `{ "userId":1, "title":"title", "contents":"contents" }` | 등록 정보   | 201: 정상등록, 400: 유효성 검사 실패              |
+| 일정 생성       | POST   | /schedules              | Body         | `{ "userId":1, "title":"title", "contents":"contents" }` | 등록 정보   | 201: 정상등록, <br> 400: 유효성 검사 실패              |
 | 전체 일정 조회   | GET    | /schedules/find         | 없음         | 없음                                       | 다건 응답 정보 | 200: 정상조회                              |
-| 선택 일정 조회   | GET    | /schedules/find/{id}    | Path ID      | `/schedules/find/1`                      | 단건 응답 정보 | 200: 정상조회, 404: id 불일치                 |
+| 선택 일정 조회   | GET    | /schedules/find/{id}    | Path ID      | `/schedules/find/1`                      | 단건 응답 정보 | 200: 정상조회, <br>  404: id 불일치                 |
 | 페이지 별 일정 조회 | GET  | /schedules/find/paging | Query Param  | `?pageNum=1&pageSize=1`                  | 다건 응답 정보 | 200: 정상조회                              |
-| 일정 수정       | PATCH  | /schedules/{id}         | Path ID, Body | `{ "title":"title", "contents":"contents" }` | 수정 정보   | 200: 정상수정, 400: 유효성 검사 실패, 404: id 불일치 |
-| 일정 삭제       | DELETE | /schedules/{id}         | Path ID      | `/schedules/1`                            | 삭제 성공 여부 | 200: 정상삭제, 400: 유효성 검사 실패, 404: id 불일치 |
+| 일정 수정       | PATCH  | /schedules/{id}         | Path ID, Body | `{ "title":"title", "contents":"contents" }` | 수정 정보   | 200: 정상수정, <br> 400: 유효성 검사 실패, <br> 404: id 불일치 |
+| 일정 삭제       | DELETE | /schedules/{id}         | Path ID      | `/schedules/1`                            | 삭제 성공 여부 | 200: 정상삭제, <br> 400: 유효성 검사 실패, <br> 404: id 불일치 |
 
 ---
 
@@ -84,9 +84,9 @@ CREATE TABLE comment
 | 기능            | 메서드  | 엔드포인트        | 요청 데이터      | 요청 예시                                      | 응답 데이터   | 상태 코드 및 설명                                  |
 |--------------|--------|--------------|--------------|------------------------------------------|-----------|------------------------------------------|
 | 전체 유저 조회 | GET    | /user/find   | 없음         | 없음                                       | 다건 응답 정보 | 200: 정상조회                                  |
-| 선택 유저 조회 | GET    | /user/find/{id} | Path ID      | `/user/find/1`                            | 단건 응답 정보 | 200: 정상조회, 404: id 불일치                    |
-| 유저 수정     | PATCH  | /user/{id}   | Path ID, Body | `{ "username":"username", "email":"email" }` | 수정 정보   | 200: 정상수정, 400: 유효성 검사 실패, 404: id 불일치 |
-| 유저 삭제     | DELETE | /user/{id}   | Path ID      | `/user/1`                                 | 삭제 성공 여부 | 200: 정상삭제, 400: 유효성 검사 실패, 404: id 불일치 |
+| 선택 유저 조회 | GET    | /user/find/{id} | Path ID      | `/user/find/1`                            | 단건 응답 정보 | 200: 정상조회, <br> 404: id 불일치                    |
+| 유저 수정     | PATCH  | /user/{id}   | Path ID, Body | `{ "username":"username", "email":"email" }` | 수정 정보   | 200: 정상수정, <br> 400: 유효성 검사 실패, <br> 404: id 불일치 |
+| 유저 삭제     | DELETE | /user/{id}   | Path ID      | `/user/1`                                 | 삭제 성공 여부 | 200: 정상삭제, <br> 400: 유효성 검사 실패, <br> 404: id 불일치 |
 
 ---
 
@@ -94,8 +94,8 @@ CREATE TABLE comment
 
 | 기능       | 메서드  | 엔드포인트        | 요청 데이터       | 요청 예시                                      | 응답 데이터   | 상태 코드 및 설명                                    |
 |---------|--------|--------------|--------------|------------------------------------------|-----------|-----------------------------------------------|
-| 회원가입   | POST   | /auth/signup  | Body         | `{ "username":"username", "email":"email", "password":"password" }` | 등록 정보   | 201: 정상등록, 400: 유효성 검사 실패, 409: 이미 존재하는 계정 정보 |
-| 로그인    | POST   | /auth/login   | Body, HttpServletRequest | `{ "email":"email", "password":"password" }` | 로그인 성공 여부 | 200: 정상완료, 400: 유효성 검사 실패, 401: 입력정보 불일치      |
+| 회원가입   | POST   | /auth/signup  | Body         | `{ "username":"username", "email":"email", "password":"password" }` | 등록 정보   | 201: 정상등록, <br> 400: 유효성 검사 실패, <br> 409: 이미 존재하는 계정 정보 |
+| 로그인    | POST   | /auth/login   | Body, HttpServletRequest | `{ "email":"email", "password":"password" }` | 로그인 성공 여부 | 200: 정상완료, <br> 400: 유효성 검사 실패, <br> 401: 입력정보 불일치      |
 | 로그아웃   | POST   | /auth/logout  | HttpServletRequest | 없음                                       | 로그아웃 성공 여부 | 200: 정상완료                                     |
 
 ---
@@ -104,11 +104,11 @@ CREATE TABLE comment
 
 | 기능             | 메서드  | 엔드포인트                          | 요청 데이터      | 요청 예시                                      | 응답 데이터   | 상태 코드 및 설명                             |
 |---------------|--------|--------------------------------|--------------|------------------------------------------|-----------|----------------------------------------|
-| 댓글 작성       | POST   | /comment/{scheduleId}          | Path ID, Body | `{ "userId":1, "contents":"contents" }` | 등록 정보   | 201: 정상등록, 400: 유효성 검사 실패              |
-| 일정 댓글 조회   | GET    | /comment/schedule/{scheduleId} | Path ID      | `/comment/1`                             | 다건 응답 정보 | 200: 정상조회, 400: 유효성 검사 실패, 404: id 불일치 |
-| 선택 댓글 조회   | GET    | /comment/{id}                  | Path ID      | `/comment/1`                             | 단건 응답 정보 | 200: 정상조회, 400: 유효성 검사 실패, 404: id 불일치 |
-| 댓글 수정       | PATCH  | /comment/{id}                  | Path ID, Body | `{ "userId":1, "contents":"contents" }` | 수정 정보   | 200: 정상수정, 400: 유효성 검사 실패, 404: id 불일치 |
-| 댓글 삭제       | DELETE | /comment/{id}                  | Path ID      | `/comment/1`                             | 삭제 성공 여부 | 200: 정상삭제, 400: 유효성 검사 실패, 404: id 불일치 |
+| 댓글 작성       | POST   | /comment/{scheduleId}          | Path ID, Body | `{ "userId":1, "contents":"contents" }` | 등록 정보   | 201: 정상등록, <br> 400: 유효성 검사 실패              |
+| 일정 댓글 조회   | GET    | /comment/schedule/{scheduleId} | Path ID      | `/comment/1`                             | 다건 응답 정보 | 200: 정상조회, <br> 400: 유효성 검사 실패, <br> 404: id 불일치 |
+| 선택 댓글 조회   | GET    | /comment/{id}                  | Path ID      | `/comment/1`                             | 단건 응답 정보 | 200: 정상조회, <br> 400: 유효성 검사 실패, <br> 404: id 불일치 |
+| 댓글 수정       | PATCH  | /comment/{id}                  | Path ID, Body | `{ "userId":1, "contents":"contents" }` | 수정 정보   | 200: 정상수정, <br> 400: 유효성 검사 실패, <br> 404: id 불일치 |
+| 댓글 삭제       | DELETE | /comment/{id}                  | Path ID      | `/comment/1`                             | 삭제 성공 여부 | 200: 정상삭제, <br> 400: 유효성 검사 실패, <br> 404: id 불일치 |
 
 <br>
 
